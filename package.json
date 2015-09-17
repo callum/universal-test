@@ -1,0 +1,36 @@
+{
+  "name": "universal-test",
+  "scripts": {
+    "api": "babel-node api.js --stage 0",
+    "build": "browserify client.js | uglifyjs -cm > public/bundle.js",
+    "start": "npm run api & npm run www & npm run watch",
+    "watch": "watchify client.js -o public/bundle.js -dv",
+    "www": "babel-node server.js --stage 0"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.1.1",
+    "react": "^0.13.3",
+    "react-redux": "^2.0.0",
+    "redux": "^2.0.0",
+    "redux-routing": "^0.3.0",
+    "redux-thunk": "^0.1.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+    "browserify": "^11.0.1",
+    "uglifyjs": "^2.4.10",
+    "watchify": "^3.4.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "stage": 0
+        }
+      ]
+    ]
+  },
+  "license": "public domain"
+}
