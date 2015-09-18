@@ -8,6 +8,7 @@
     "www": "babel-node server.js --stage 0"
   },
   "dependencies": {
+    "concat-stream": "^1.5.0",
     "isomorphic-fetch": "^2.1.1",
     "react": "^0.13.3",
     "react-redux": "^2.0.0",

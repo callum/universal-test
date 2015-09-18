@@ -1,5 +1,6 @@
 import http from 'http'
 import url from 'url'
+import concat from 'concat-stream'
 
 const items = [
   { id: 'a42d', title: 'foo' },
@@ -30,14 +31,11 @@ const api = http.createServer((req, res) => {
     }
 
     if (req.method === 'POST') {
-      let body = ''
-
-      req.on('data', data => body += data)
-      req.on('end', () => {
+      req.pipe(concat(body => {
         const parsed = JSON.parse(body)
         settings = { ...settings, email: parsed.email }
         res.end(JSON.stringify(settings))
-      })
+      }))
 
       return
     }
